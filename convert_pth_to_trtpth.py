@@ -29,7 +29,8 @@ prev_state = [prev_state1,prev_state2]
 
 state = [curr_state,prev_state1,prev_state2]
 model_trt = torch2trt(model,state,input_names=['input','prev_state_1','prev_state_2'],output_names=['output','new_state_1','new_state_2'],use_onnx=True)
-
+a,b,c=model_trt(curr_state,prev_state1,prev_state2)
+print(a)
 torch.save(model_trt.state_dict(),'firenet_trt.pth')
 
 
