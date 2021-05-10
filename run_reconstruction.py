@@ -92,7 +92,6 @@ if __name__ == "__main__":
         for event_window in event_window_iterator:
 
             last_timestamp = event_window[-1, 0]
-            timee.append(event_window[0,0])
 
             with Timer('Building event tensor'):
                 if args.compute_voxel_grid_on_cpu:
