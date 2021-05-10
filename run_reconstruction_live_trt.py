@@ -58,9 +58,10 @@ if __name__ == "__main__":
     model_trt = TRTModule()
     model_trt.load_state_dict(torch.load(args.path_to_model))
     device = get_device(args.use_gpu)
+    model_trt.to(device)
     num_bins = 5
 
-    # model.eval()
+    model_trt.eval()
 
     reconstructor = ImageReconstructor(model_trt, height, width, num_bins, args)
 
@@ -121,7 +122,7 @@ if __name__ == "__main__":
                                                                         width=width,
                                                                         height=height,
                                                                         device=device)
-                           
+                    print(event_tensor.max(),event_tensor.min())       
                     num_events_in_window = num_pol_event
                     
                     reconstructor.update_reconstruction(event_tensor, start_index + num_events_in_window, last_timestamp)

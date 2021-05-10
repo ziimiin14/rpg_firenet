@@ -58,7 +58,9 @@ if __name__ == "__main__":
                 for i, image_path in enumerate(images):
 
                     stamp = stamps[i]
-                    img = cv2.imread(join(reconstructed_images_folder, image_path), 0)
+                    img = cv2.imread(image_path, 0)
+                    # print(reconstructed_images_folder,image_path)
+                    # img = np.array(img)
 
                     try:
                         img_msg = bridge.cv2_to_imgmsg(img, encoding='mono8')
@@ -69,5 +71,5 @@ if __name__ == "__main__":
                         outbag.write(args.image_topic, img_msg,
                                      img_msg.header.stamp)
 
-                    except CvBridgeError, e:
-                        print e
+                    except CvBridgeError as e:
+                        print(e)

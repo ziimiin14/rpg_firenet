@@ -70,7 +70,7 @@ class ImageReconstructor:
 
                 events = self.event_preprocessor(events)
                 # print(events.max(),events.min())
-                events = events.type(torch.float16)
+                # events = events.type(torch.float16)
 
                 # Resize tensor to [1 x C x crop_size x crop_size] by applying zero padding
                 events_for_each_channel = {'grayscale': self.crop.pad(events)}
@@ -120,4 +120,4 @@ class ImageReconstructor:
             out = self.image_filter(out)
 
             self.image_writer(out, event_tensor_id, stamp, events=events)
-            # self.image_display(out, events)
+            self.image_display(out, events)

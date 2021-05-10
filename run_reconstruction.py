@@ -87,10 +87,12 @@ if __name__ == "__main__":
     else:
         event_window_iterator = FixedSizeEventReader(path_to_events, num_events=N, start_index=start_index)
 
+
     with Timer('Processing entire dataset'):
         for event_window in event_window_iterator:
 
             last_timestamp = event_window[-1, 0]
+            timee.append(event_window[0,0])
 
             with Timer('Building event tensor'):
                 if args.compute_voxel_grid_on_cpu:

@@ -4,3 +4,7 @@ scripts/events_02182021.bag
 scripts/extracted_data
 test_set
 eventFrame
+event_data_04302021
+event_reconstructed_04302021
+event_reconstructed_04302021_2
+pretrained/yolov5s_mannequin.onnx
