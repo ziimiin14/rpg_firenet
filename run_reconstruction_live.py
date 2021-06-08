@@ -104,25 +104,18 @@ if __name__ == "__main__":
             special_events, num_special_event,
             imu_events, num_imu_event) = \
                 device1.get_event("events")
-            # (pol_events, num_pol_event,
-            #  special_events, num_special_event,
-            #  frames_ts, frames, imu_events,
-            #  num_imu_event) = device1.get_event("events")
             if num_pol_event != 0:
-                # events = pol_events[:,1:]
-                # time = pol_events[:,0]
+
 
                 pol_events = pol_events.astype(np.float32)
                 event_window = pol_events
                 event_window[:,0] = event_window[:,0]/1e6
-                # event_window = event_window[0:5000]
-                # print(event_window.shape)
-                # print(event_window.shape)
+
 
 
                 with Timer('Processing entire dataset'):
                     last_timestamp = event_window[-1, 0]
-                    # print(last_timestamp)
+
 
 
                     with Timer('Building event tensor'):
@@ -138,8 +131,7 @@ if __name__ == "__main__":
                                                                         width=width,
                                                                         height=height,
                                                                         device=device)
-                            # print(event_tensor.numpy())
-                    # print(event_tensor.min())
+
                     num_events_in_window = num_pol_event
                     reconstructor.update_reconstruction(event_tensor, start_index + num_events_in_window, last_timestamp)
 
@@ -154,37 +146,3 @@ if __name__ == "__main__":
             cv2.destroyAllWindows()
             break
 
-
-    # if args.compute_voxel_grid_on_cpu:
-    #     print('Will compute voxel grid on CPU.')
-
-    # # if args.fixed_duration:
-    # #     event_window_iterator = FixedDurationEventReader(path_to_events,
-    # #                                                      duration_ms=args.window_duration,
-    # #                                                      start_index=start_index)
-    # # else:
-    # #     event_window_iterator = FixedSizeEventReader(path_to_events, num_events=N, start_index=start_index)
-
-    # with Timer('Processing entire dataset'):
-    #     for event_window in event_window_iterator:
-    #         with Timer('Test'):
-    #             last_timestamp = event_window[-1, 0]
-
-    #             with Timer('Building event tensor'):
-    #                 if args.compute_voxel_grid_on_cpu:
-    #                     event_tensor = events_to_voxel_grid(event_window,
-    #                                                         num_bins=model.num_bins,
-    #                                                         width=width,
-    #                                                         height=height)
-    #                     event_tensor = torch.from_numpy(event_tensor)
-    #                 else:
-    #                     event_tensor = events_to_voxel_grid_pytorch(event_window,
-    #                                                                 num_bins=model.num_bins,
-    #                                                                 width=width,
-    #                                                                 height=height,
-    #                                                                 device=device)
-
-    #             num_events_in_window = event_window.shape[0]
-    #             reconstructor.update_reconstruction(event_tensor, start_index + num_events_in_window, last_timestamp)
-
-    #             start_index += num_events_in_window

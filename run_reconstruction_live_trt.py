@@ -98,13 +98,11 @@ if __name__ == "__main__":
                 
                 event_window = pol_events.astype(np.float32)
                 event_window[:,0] = event_window[:,0]/1e6
-                # print(event_window)
 
 
 
                 with Timer('Processing entire dataset'):
                     last_timestamp = event_window[-1, 0]
-                    # print(event_window[0, 0],event_window[-1, 0])
 
 
                     with Timer('Building event tensor'):
@@ -115,7 +113,6 @@ if __name__ == "__main__":
                                                                 height=height)
                             event_tensor = torch.from_numpy(event_tensor)
                         
-                            # print('run 1')
                         else:
                             event_tensor = events_to_voxel_grid_pytorch(event_window,
                                                                         num_bins=num_bins,
@@ -130,7 +127,6 @@ if __name__ == "__main__":
                     start_index += num_events_in_window
 
                 
-                # cv2.waitKey(1)
 
         except KeyboardInterrupt:
             

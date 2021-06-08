@@ -595,9 +595,7 @@ def events_to_voxel_grid_pytorch(events, num_bins, width, height, device):
     #                               index=(xs[valid_indices] + ys[valid_indices]
     #                               * width + tis_long[valid_indices] * width * height).type(torch.cuda.LongTensor),
     #                               source=vals_left[valid_indices])
-    #         # index = (xs[valid_indices] + ys[valid_indices]* width + tis_long[valid_indices] * width * height)
-    #         # index = index.type(torch.long)
-    #         # voxel_grid[index] += vals_left[valid_indices]
+
 
     #         valid_indices = (tis + 1) < num_bins
     #         valid_indices &= tis >= 0
@@ -606,9 +604,6 @@ def events_to_voxel_grid_pytorch(events, num_bins, width, height, device):
     #                               index=(xs[valid_indices] + ys[valid_indices] * width
     #                               + (tis_long[valid_indices] + 1) * width * height).type(torch.cuda.LongTensor),
     #                               source=vals_right[valid_indices])
-    #         # index=(xs[valid_indices] + ys[valid_indices] * width + (tis_long[valid_indices] + 1) * width * height)
-    #         # index = index.type(torch.long)
-    #         # voxel_grid[index] += vals_right[valid_indices]
 
 
     #     voxel_grid = voxel_grid.view(num_bins, height, width)
